@@ -1,6 +1,6 @@
 package com.rack.genshinapi.entities
 
-data class Character (
+data class GenshinCharacterEntity (
         val name: String,
         val weaponType: String,
         val vision: String,

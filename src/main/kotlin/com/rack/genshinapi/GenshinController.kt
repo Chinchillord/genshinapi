@@ -1,13 +1,22 @@
 package com.rack.genshinapi
 
-import org.springframework.web.bind.annotation.RestController
+import com.rack.genshinapi.entities.GenshinCharacterEntity
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.*
 
 @RestController
-class GenshinController {
-    fun postCharacter() {
-        //TODO: add
+class GenshinController(@Autowired internal var service: GenshinService) {
+
+    @PostMapping("/character/{name}")
+    fun postCharacter(
+            @PathVariable("name") name: String,
+            @RequestBody character: GenshinCharacterEntity
+            ) {
+        service.addCharacter(character)
     }
-    fun getCharacter() {
-        //TODO: add
+
+    @GetMapping("/character/{name}")
+    fun getCharacter(@PathVariable("name") name: String): String? {
+        return service.getCharacter()
     }
 }
